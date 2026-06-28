@@ -1,0 +1,1732 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Bodies By Jake — Personal Training</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@1,400&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --black:   #0a0a0a;
+    --dark:    #111111;
+    --card:    #161616;
+    --border:  #242424;
+    --gold:    #C9A84C;
+    --gold-lt: #E2C47A;
+    --gold-dk: #8B6914;
+    --white:   #F5F2EC;
+    --muted:   #888888;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--black);
+    color: var(--white);
+    font-family: 'Inter', sans-serif;
+    font-weight: 300;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 20px 5vw;
+    background: rgba(10,10,10,0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(201,168,76,0.12);
+  }
+  .nav-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.35rem;
+    letter-spacing: 0.12em;
+    color: var(--gold);
+  }
+  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+  .nav-links a {
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 0.78rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--gold-lt); }
+  .nav-cta {
+    background: var(--gold);
+    color: var(--black);
+    border: none;
+    padding: 10px 24px;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background 0.2s;
+    text-decoration: none;
+  }
+  .nav-cta:hover { background: var(--gold-lt); }
+  .nav-socials { display: flex; gap: 1rem; align-items: center; }
+  .nav-social-icon {
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.2s;
+    display: flex; align-items: center;
+  }
+  .nav-social-icon:hover { color: var(--gold); }
+  .nav-social-icon svg { width: 17px; height: 17px; fill: currentColor; }
+
+  /* ── SOCIAL STRIP ── */
+  .social-strip {
+    background: var(--dark);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding: 3.5rem 5vw;
+    text-align: center;
+  }
+  .social-strip-eyebrow {
+    font-size: 0.7rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.75rem;
+  }
+  .social-strip-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2rem;
+    letter-spacing: 0.06em;
+    color: var(--white);
+    margin-bottom: 2rem;
+  }
+  .social-buttons {
+    display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;
+  }
+  .social-btn {
+    display: flex; align-items: center; gap: 10px;
+    padding: 13px 28px;
+    border: 1px solid var(--border);
+    color: var(--white);
+    text-decoration: none;
+    font-size: 0.78rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    font-weight: 500;
+    transition: border-color 0.2s, color 0.2s, background 0.2s;
+    background: transparent;
+  }
+  .social-btn svg { width: 16px; height: 16px; fill: currentColor; flex-shrink: 0; }
+  .social-btn:hover { border-color: var(--gold); color: var(--gold); }
+  .social-btn.instagram:hover { background: rgba(201,168,76,0.06); }
+  .social-btn.tiktok:hover { background: rgba(201,168,76,0.06); }
+  .social-btn.facebook:hover { background: rgba(201,168,76,0.06); }
+
+  .footer-socials { display: flex; gap: 1.2rem; align-items: center; }
+  .footer-social-icon {
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.2s;
+    display: flex; align-items: center;
+  }
+  .footer-social-icon:hover { color: var(--gold); }
+  .footer-social-icon svg { width: 18px; height: 18px; fill: currentColor; }
+
+  /* ── URGENCY BANNER ── */
+  .urgency-banner {
+    background: var(--gold);
+    color: var(--black);
+    text-align: center;
+    padding: 12px 5vw;
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    position: relative;
+    z-index: 99;
+  }
+  .urgency-banner a {
+    color: var(--black);
+    text-decoration: underline;
+    margin-left: 1rem;
+    font-weight: 700;
+  }
+  .urgency-dot {
+    display: inline-block;
+    width: 8px; height: 8px;
+    background: var(--black);
+    border-radius: 50%;
+    margin-right: 8px;
+    animation: pulse 1.8s ease-in-out infinite;
+    vertical-align: middle;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.4; transform: scale(0.75); }
+  }
+
+  /* ── FAQ ── */
+  .faq-list { margin-top: 3rem; max-width: 780px; }
+  .faq-item {
+    border-bottom: 1px solid var(--border);
+    overflow: hidden;
+  }
+  .faq-question {
+    width: 100%;
+    background: none;
+    border: none;
+    color: var(--white);
+    text-align: left;
+    padding: 1.5rem 0;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 500;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    letter-spacing: 0.01em;
+    transition: color 0.2s;
+  }
+  .faq-question:hover { color: var(--gold); }
+  .faq-icon {
+    color: var(--gold);
+    font-size: 1.2rem;
+    flex-shrink: 0;
+    transition: transform 0.3s;
+    font-style: normal;
+  }
+  .faq-item.open .faq-icon { transform: rotate(45deg); }
+  .faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease, padding 0.3s;
+    font-size: 0.87rem;
+    color: var(--muted);
+    line-height: 1.8;
+  }
+  .faq-item.open .faq-answer {
+    max-height: 300px;
+    padding-bottom: 1.5rem;
+  }
+
+  /* ── APP WAITLIST ── */
+  .app-waitlist {
+    background: var(--black);
+    border: 1px solid var(--border);
+    padding: 5rem 5vw;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .app-waitlist::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse 60% 80% at 50% 100%, rgba(201,168,76,0.06) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .app-badge {
+    display: inline-block;
+    background: rgba(201,168,76,0.12);
+    border: 1px solid var(--gold-dk);
+    color: var(--gold);
+    font-size: 0.68rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    padding: 6px 16px;
+    margin-bottom: 1.5rem;
+  }
+  .app-waitlist-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    letter-spacing: 0.04em;
+    line-height: 1.05;
+    color: var(--white);
+    margin-bottom: 1rem;
+  }
+  .app-waitlist-title span { color: var(--gold); }
+  .app-waitlist-body {
+    color: var(--muted);
+    font-size: 0.9rem;
+    line-height: 1.8;
+    max-width: 500px;
+    margin: 0 auto 2.5rem;
+  }
+  .app-waitlist-features {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+    margin-bottom: 2.5rem;
+  }
+  .app-feature {
+    font-size: 0.75rem;
+    color: var(--muted);
+    letter-spacing: 0.08em;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .app-feature::before {
+    content: '◈';
+    color: var(--gold);
+    font-size: 0.6rem;
+  }
+  .app-waitlist-form {
+    display: flex;
+    gap: 0;
+    max-width: 440px;
+    margin: 0 auto;
+  }
+  .app-waitlist-form input {
+    flex: 1;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-right: none;
+    color: var(--white);
+    padding: 14px 16px;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.88rem;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  .app-waitlist-form input:focus { border-color: var(--gold); }
+  .app-waitlist-form button {
+    background: var(--gold);
+    color: var(--black);
+    border: none;
+    padding: 14px 24px;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: background 0.2s;
+  }
+  .app-waitlist-form button:hover { background: var(--gold-lt); }
+  .app-waitlist-note {
+    margin-top: 0.75rem;
+    font-size: 0.7rem;
+    color: #444;
+    letter-spacing: 0.06em;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: flex; flex-direction: column; justify-content: center;
+    padding: 120px 5vw 80px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 60% 50% at 80% 50%, rgba(201,168,76,0.07) 0%, transparent 70%),
+      radial-gradient(ellipse 40% 60% at 20% 80%, rgba(201,168,76,0.04) 0%, transparent 60%);
+    pointer-events: none;
+  }
+  .hero-eyebrow {
+    font-size: 0.72rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1.5rem;
+  }
+  .hero-headline {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(4rem, 10vw, 9rem);
+    line-height: 0.92;
+    letter-spacing: 0.02em;
+    color: var(--white);
+    margin-bottom: 0.15em;
+  }
+  .hero-headline em {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    color: var(--gold);
+    font-size: 0.75em;
+  }
+  .hero-sub {
+    max-width: 480px;
+    margin-top: 2rem;
+    font-size: 1rem;
+    color: var(--muted);
+    line-height: 1.7;
+  }
+  .hero-actions {
+    display: flex; gap: 1rem; flex-wrap: wrap;
+    margin-top: 2.5rem;
+  }
+  .btn-primary {
+    background: var(--gold);
+    color: var(--black);
+    border: none;
+    padding: 16px 36px;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: background 0.2s, transform 0.15s;
+  }
+  .btn-primary:hover { background: var(--gold-lt); transform: translateY(-1px); }
+  .btn-ghost {
+    background: transparent;
+    color: var(--white);
+    border: 1px solid var(--border);
+    padding: 16px 36px;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 400;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .btn-ghost:hover { border-color: var(--gold); color: var(--gold); }
+
+  .hero-stats {
+    display: flex; gap: 3rem; flex-wrap: wrap;
+    margin-top: 4rem;
+    padding-top: 2.5rem;
+    border-top: 1px solid var(--border);
+  }
+  .stat-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2.4rem;
+    color: var(--gold);
+    letter-spacing: 0.04em;
+    line-height: 1;
+  }
+  .stat-label {
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-top: 4px;
+  }
+
+  /* ── DIVIDER ── */
+  .divider {
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold-dk), transparent);
+  }
+
+  /* ── SECTIONS ── */
+  section { padding: 100px 5vw; }
+
+  .section-eyebrow {
+    font-size: 0.7rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1rem;
+  }
+  .section-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    line-height: 1;
+    letter-spacing: 0.03em;
+    color: var(--white);
+    margin-bottom: 1.5rem;
+  }
+  .section-body {
+    color: var(--muted);
+    max-width: 560px;
+    line-height: 1.8;
+  }
+
+  /* ── ABOUT ── */
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6vw;
+    align-items: center;
+    margin-top: 4rem;
+  }
+  .about-credentials {
+    margin-top: 2.5rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+  .cred-item {
+    display: flex; align-items: flex-start; gap: 10px;
+    font-size: 0.82rem;
+    color: var(--muted);
+  }
+  .cred-dot {
+    width: 5px; height: 5px;
+    background: var(--gold);
+    border-radius: 50%;
+    margin-top: 6px; flex-shrink: 0;
+  }
+  .about-image-stack {
+    position: relative;
+    display: flex; flex-direction: column; gap: 1rem;
+  }
+  .about-img-primary {
+    width: 100%;
+    aspect-ratio: 3/4;
+    object-fit: cover;
+    object-position: top center;
+    filter: grayscale(20%);
+    border: 1px solid var(--border);
+  }
+  .about-img-secondary {
+    width: 65%;
+    aspect-ratio: 4/3;
+    object-fit: cover;
+    object-position: center top;
+    filter: grayscale(20%);
+    border: 1px solid var(--border);
+    align-self: flex-end;
+    margin-top: -6rem;
+    border: 2px solid var(--gold-dk);
+  }
+  .gold-label {
+    position: absolute;
+    bottom: -1rem; left: 1.5rem;
+    background: var(--gold);
+    color: var(--black);
+    font-size: 0.68rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    font-weight: 600;
+    padding: 6px 14px;
+  }
+
+  /* ── SERVICES ── */
+  #services { background: var(--dark); }
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5px;
+    margin-top: 4rem;
+    border: 1px solid var(--border);
+  }
+  .service-card {
+    background: var(--card);
+    padding: 2.5rem 2rem;
+    border-right: 1px solid var(--border);
+    transition: background 0.2s;
+    position: relative;
+    overflow: hidden;
+  }
+  .service-card::after {
+    content: '';
+    position: absolute; bottom: 0; left: 0; right: 0;
+    height: 2px;
+    background: var(--gold);
+    transform: scaleX(0);
+    transition: transform 0.3s;
+    transform-origin: left;
+  }
+  .service-card:hover::after { transform: scaleX(1); }
+  .service-card:hover { background: #1a1a1a; }
+  .service-icon {
+    font-size: 1.8rem;
+    margin-bottom: 1.2rem;
+  }
+  .service-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.4rem;
+    letter-spacing: 0.06em;
+    color: var(--white);
+    margin-bottom: 0.75rem;
+  }
+  .service-desc {
+    font-size: 0.84rem;
+    color: var(--muted);
+    line-height: 1.7;
+  }
+
+  /* ── TRANSFORMATIONS ── */
+  .transforms-intro {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    flex-wrap: wrap;
+    gap: 2rem;
+    margin-bottom: 3rem;
+  }
+  .transforms-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2px;
+  }
+  .transform-card {
+    position: relative;
+    overflow: hidden;
+    background: var(--card);
+  }
+  .transform-card img {
+    width: 100%;
+    display: block;
+    filter: grayscale(15%);
+    transition: transform 0.4s ease, filter 0.4s;
+  }
+  .transform-card:hover img {
+    transform: scale(1.02);
+    filter: grayscale(0%);
+  }
+  .transform-overlay {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    padding: 1.5rem;
+    background: linear-gradient(transparent, rgba(0,0,0,0.75));
+    pointer-events: none;
+  }
+  .transform-tag {
+    display: inline-block;
+    background: var(--gold);
+    color: var(--black);
+    font-size: 0.65rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    font-weight: 600;
+    padding: 4px 10px;
+  }
+
+  /* ── PHILOSOPHY ── */
+  #philosophy { background: var(--dark); }
+  .philosophy-list {
+    margin-top: 4rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 0;
+    border-top: 1px solid var(--border);
+  }
+  .phil-item {
+    padding: 2.5rem 2rem 2.5rem 0;
+    border-bottom: 1px solid var(--border);
+    border-right: 1px solid var(--border);
+  }
+  .phil-item:nth-child(even) { padding-left: 2rem; }
+  .phil-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 3rem;
+    color: var(--border);
+    line-height: 1;
+    margin-bottom: 0.5rem;
+  }
+  .phil-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.2rem;
+    letter-spacing: 0.06em;
+    color: var(--gold);
+    margin-bottom: 0.5rem;
+  }
+  .phil-body {
+    font-size: 0.82rem;
+    color: var(--muted);
+    line-height: 1.7;
+  }
+
+  /* ── CONSULTATION FORM ── */
+  #consult { background: var(--black); }
+  .consult-wrap {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6vw;
+    align-items: start;
+    margin-top: 4rem;
+  }
+  .form-field {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-bottom: 1.25rem;
+  }
+  .form-field label {
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .form-field input,
+  .form-field select,
+  .form-field textarea {
+    background: var(--card);
+    border: 1px solid var(--border);
+    color: var(--white);
+    padding: 14px 16px;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 300;
+    outline: none;
+    transition: border-color 0.2s;
+    width: 100%;
+    -webkit-appearance: none;
+  }
+  .form-field input:focus,
+  .form-field select:focus,
+  .form-field textarea:focus {
+    border-color: var(--gold);
+  }
+  .form-field select option { background: var(--card); }
+  .form-field textarea { resize: vertical; min-height: 100px; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .form-submit {
+    width: 100%;
+    background: var(--gold);
+    color: var(--black);
+    border: none;
+    padding: 18px;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.82rem;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    cursor: pointer;
+    margin-top: 0.5rem;
+    transition: background 0.2s;
+  }
+  .form-submit:hover { background: var(--gold-lt); }
+  .consult-promise {
+    margin-top: 1rem;
+    font-size: 0.72rem;
+    color: var(--muted);
+    letter-spacing: 0.05em;
+    text-align: center;
+  }
+  .consult-side-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2rem, 4vw, 3.2rem);
+    line-height: 1;
+    letter-spacing: 0.03em;
+    margin-bottom: 1.5rem;
+  }
+  .consult-side-body {
+    font-size: 0.9rem;
+    color: var(--muted);
+    line-height: 1.8;
+    margin-bottom: 2rem;
+  }
+  .what-to-expect {
+    border-top: 1px solid var(--border);
+    padding-top: 2rem;
+  }
+  .expect-item {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1.25rem;
+    align-items: flex-start;
+  }
+  .expect-icon {
+    color: var(--gold);
+    font-size: 1rem;
+    margin-top: 2px;
+    flex-shrink: 0;
+  }
+  .expect-text {
+    font-size: 0.84rem;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+  .expect-text strong { color: var(--white); font-weight: 500; }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--dark);
+    border-top: 1px solid var(--border);
+    padding: 3rem 5vw;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+  }
+  .footer-brand {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.1rem;
+    letter-spacing: 0.12em;
+    color: var(--gold);
+  }
+  .footer-tagline {
+    font-size: 0.72rem;
+    color: var(--muted);
+    letter-spacing: 0.08em;
+    margin-top: 4px;
+  }
+  .footer-links {
+    display: flex; gap: 2rem; list-style: none; flex-wrap: wrap;
+  }
+  .footer-links a {
+    font-size: 0.75rem;
+    color: var(--muted);
+    text-decoration: none;
+    letter-spacing: 0.08em;
+    transition: color 0.2s;
+  }
+  .footer-links a:hover { color: var(--gold); }
+  .footer-copy {
+    font-size: 0.7rem;
+    color: #444;
+    letter-spacing: 0.05em;
+  }
+
+  /* ── FAQ ── */
+  .faq-list {
+    margin-top: 3rem;
+    max-width: 760px;
+    border-top: 1px solid var(--border);
+  }
+  .faq-item { border-bottom: 1px solid var(--border); }
+  .faq-q {
+    width: 100%;
+    background: none;
+    border: none;
+    color: var(--white);
+    font-family: 'Inter', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 500;
+    text-align: left;
+    padding: 1.4rem 0;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    transition: color 0.2s;
+    letter-spacing: 0.01em;
+  }
+  .faq-q:hover { color: var(--gold); }
+  .faq-arrow {
+    color: var(--gold);
+    font-size: 1rem;
+    transition: transform 0.3s;
+    flex-shrink: 0;
+  }
+  .faq-q.open .faq-arrow { transform: rotate(180deg); }
+  .faq-a {
+    display: none;
+    padding: 0 0 1.4rem;
+    color: var(--muted);
+    font-size: 0.88rem;
+    line-height: 1.8;
+    max-width: 640px;
+  }
+  .faq-a.open { display: block; }
+
+  /* ── TESTIMONIALS ── */
+  .testimonial-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--gold);
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 200px;
+  }
+  .testimonial-quote {
+    font-size: 0.9rem;
+    color: var(--white);
+    line-height: 1.8;
+    font-style: italic;
+    margin-bottom: 1rem;
+  }
+  .testimonial-author {
+    font-size: 0.72rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+
+  /* ── COMPETITION RECORD ── */
+  .record-wrap {
+    margin-top: 3.5rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4vw;
+  }
+  .record-category { border: 1px solid var(--border); padding: 2rem; }
+  .record-cat-header {
+    display: flex; gap: 1rem; align-items: flex-start;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 1.5rem;
+  }
+  .record-cat-icon { font-size: 1.5rem; margin-top: 2px; }
+  .record-cat-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.3rem; letter-spacing: 0.06em; color: var(--white);
+  }
+  .record-cat-sub {
+    font-size: 0.7rem; letter-spacing: 0.1em;
+    color: var(--muted); text-transform: uppercase; margin-top: 3px;
+  }
+  .record-year-group { margin-bottom: 1.5rem; }
+  .record-year {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 0.85rem; letter-spacing: 0.2em; color: var(--gold-dk);
+    margin-bottom: 0.75rem; padding-bottom: 0.4rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .record-items { display: flex; flex-direction: column; gap: 0.6rem; }
+  .record-item {
+    display: flex; align-items: center; gap: 1rem;
+    padding: 0.75rem 1rem;
+    background: var(--black);
+    border-left: 3px solid var(--border);
+  }
+  .record-item.gold    { border-left-color: var(--gold); }
+  .record-item.silver  { border-left-color: #A8A9AD; }
+  .record-item.bronze  { border-left-color: #CD7F32; }
+  .record-item.highlight { border-left-color: var(--gold); background: rgba(201,168,76,0.05); }
+  .record-place {
+    display: flex; align-items: baseline; gap: 1px;
+    min-width: 48px; justify-content: center;
+  }
+  .place-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.8rem; line-height: 1; color: var(--white);
+  }
+  .record-item.gold   .place-num { color: var(--gold); }
+  .record-item.silver .place-num { color: #A8A9AD; }
+  .record-item.bronze .place-num { color: #CD7F32; }
+  .place-suffix {
+    font-size: 0.65rem; color: var(--muted);
+    font-weight: 500; letter-spacing: 0.05em; margin-bottom: 4px;
+  }
+  .record-event { font-size: 0.82rem; color: var(--white); font-weight: 500; line-height: 1.4; }
+  .record-note  { font-size: 0.72rem; color: var(--muted); margin-top: 2px; }
+  @media (max-width: 900px) { .record-wrap { grid-template-columns: 1fr; } }
+
+
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.65s ease, transform 0.65s ease;
+  }
+  .fade-up.visible { opacity: 1; transform: translateY(0); }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    .about-grid,
+    .consult-wrap { grid-template-columns: 1fr; }
+    .about-image-stack { order: -1; }
+    .about-img-secondary { width: 50%; }
+    .nav-links { display: none; }
+    .hero-stats { gap: 2rem; }
+  }
+  @media (max-width: 600px) {
+    .form-row { grid-template-columns: 1fr; }
+    .philosophy-list { grid-template-columns: 1fr; }
+    .hero-headline { font-size: 3.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- URGENCY BANNER -->
+<div class="urgency-banner">
+  <span class="urgency-dot"></span>
+  Only 3 in-person spots remaining this month — 2 already claimed
+  <a href="#consult">Reserve yours →</a>
+</div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Bodies By Jake</div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#transformations">Results</a></li>
+    <li><a href="#philosophy">Philosophy</a></li>
+  </ul>
+  <div style="display:flex; align-items:center; gap:1.5rem;">
+    <div class="nav-socials">
+      <!-- Instagram -->
+      <a href="https://www.instagram.com/JakeTheeGreat" target="_blank" rel="noopener" class="nav-social-icon" aria-label="Instagram">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+      </a>
+      <!-- TikTok -->
+      <a href="https://www.tiktok.com/@JakeeTheeGreat" target="_blank" rel="noopener" class="nav-social-icon" aria-label="TikTok">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.17 8.17 0 004.78 1.52V6.75a4.85 4.85 0 01-1.01-.06z"/></svg>
+      </a>
+      <!-- Facebook -->
+      <a href="https://www.facebook.com/JakeTheeGreat" target="_blank" rel="noopener" class="nav-social-icon" aria-label="Facebook">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+      </a>
+    </div>
+    <a href="#consult" class="nav-cta">Claim Free $100 Assessment</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <p class="hero-eyebrow">San Antonio, Texas · Online Worldwide</p>
+  <h1 class="hero-headline">
+    Build the<br>
+    <em>stronger</em><br>
+    version.
+  </h1>
+  <p class="hero-sub">
+    Evidence-based coaching that transforms how you train, eat, and live —
+    built on science, accountability, and a decade of real results.
+  </p>
+  <div class="hero-actions">
+    <a href="#consult" class="btn-primary">Claim Your Free $100 Assessment</a>
+    <a href="#transformations" class="btn-ghost">See Client Results</a>
+  </div>
+  <div class="hero-stats">
+    <div>
+      <div class="stat-num">10+</div>
+      <div class="stat-label">Years Coaching</div>
+    </div>
+    <div>
+      <div class="stat-num">100s</div>
+      <div class="stat-label">Lives Transformed</div>
+    </div>
+    <div>
+      <div class="stat-num">5</div>
+      <div class="stat-label">Certifications</div>
+    </div>
+    <div>
+      <div class="stat-num">Pro</div>
+      <div class="stat-label">Natural Bodybuilder</div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ABOUT -->
+<section id="about">
+  <p class="section-eyebrow fade-up">The Coach</p>
+  <h2 class="section-title fade-up">Jacob Rafael Murillo</h2>
+  <p class="section-body fade-up">
+    He wasn't always the guy on stage. He was the overweight kid with a liver disease
+    who didn't know what his body was capable of — until education changed everything.
+  </p>
+  <div class="about-grid">
+    <div class="fade-up">
+      <p style="color:var(--muted); font-size:0.95rem; line-height:1.9; margin-bottom:1.5rem;">
+        Growing up, Jacob was diagnosed with nonalcoholic fatty liver disease — overweight, undermuscled,
+        and like most people, without any real framework for understanding what his body needed.
+        What turned things around wasn't a program or a quick fix. It was <em style="color:var(--white);">education</em>.
+        Once he understood how movement, nutrition, and recovery actually worked together, everything changed.
+      </p>
+      <p style="color:var(--muted); font-size:0.95rem; line-height:1.9; margin-bottom:1.5rem;">
+        He started coaching at 19 and hasn't stopped — not because it's a job,
+        but because watching someone reclaim their health and quality of life never gets old.
+        Over a decade in, it still doesn't feel like work. That's how he knows it's a calling.
+      </p>
+      <p style="color:var(--muted); font-size:0.95rem; line-height:1.9;">
+        Today Jacob competes as a natural professional bodybuilder with the NFF,
+        has placed <strong style="color:var(--white);">top 3 in his age group</strong> in multiple half marathons and 10Ks,
+        and finished the San Antonio Marathon in the <strong style="color:var(--white);">top 7% of 3,427 finishers</strong> (236th overall).
+        He builds bodies that aren't just aesthetically pleasing — but athletically capable.
+      </p>
+      <div class="about-credentials">
+        <div class="cred-item"><div class="cred-dot"></div>Kinesiology Degree</div>
+        <div class="cred-item"><div class="cred-dot"></div>NASM Certified PT</div>
+        <div class="cred-item"><div class="cred-dot"></div>NCSF Certified PT</div>
+        <div class="cred-item"><div class="cred-dot"></div>Sports Nutrition Specialist</div>
+        <div class="cred-item"><div class="cred-dot"></div>TRX Certified</div>
+        <div class="cred-item"><div class="cred-dot"></div>NFF Natural Pro Bodybuilder</div>
+        <div class="cred-item"><div class="cred-dot"></div>NPTI Instructor</div>
+      </div>
+      <div style="margin-top:2.5rem; display:flex; gap:1rem; flex-wrap:wrap;">
+        <a href="#consult" class="btn-primary">Book a Free Assessment</a>
+        <a href="#faq" class="btn-ghost">Read FAQs</a>
+      </div>
+    </div>
+    <div class="about-image-stack fade-up" style="position:relative;">
+      <img
+        src="R-4732.jpeg"
+        alt="Jacob Murillo competing at NFF natural bodybuilding"
+        class="about-img-primary"
+        onerror="this.style.background='#161616'; this.style.minHeight='400px'; this.removeAttribute('src')"
+      />
+      <img
+        src="IMG_0120.jpeg"
+        alt="Jacob finishing the San Antonio Marathon"
+        class="about-img-secondary"
+        onerror="this.style.background='#1a1a1a'; this.style.minHeight='200px'; this.removeAttribute('src')"
+      />
+      <span class="gold-label">Hybrid Athlete</span>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- COMPETITION RECORD -->
+<section id="record" style="background:var(--dark);">
+  <p class="section-eyebrow fade-up">The Resume</p>
+  <h2 class="section-title fade-up">Competition Record</h2>
+  <p class="section-body fade-up">
+    Jacob doesn't just coach the lifestyle — he lives it. From the bodybuilding stage to the marathon finish line, this is what competing at the highest level looks like.
+  </p>
+
+  <div class="record-wrap fade-up">
+
+    <!-- BODYBUILDING -->
+    <div class="record-category">
+      <div class="record-cat-header">
+        <span class="record-cat-icon">🏆</span>
+        <div>
+          <div class="record-cat-title">Bodybuilding</div>
+          <div class="record-cat-sub">Natural Fit Federation (NFF) · Drug-Tested</div>
+        </div>
+      </div>
+      <div class="record-entries">
+
+        <div class="record-year-group">
+          <div class="record-year">2024</div>
+          <div class="record-items">
+            <div class="record-item gold">
+              <div class="record-place">
+                <span class="place-num">1</span><span class="place-suffix">st</span>
+              </div>
+              <div class="record-detail">
+                <div class="record-event">NFF Battlegrounds — Novice Men's Physique</div>
+              </div>
+            </div>
+            <div class="record-item gold">
+              <div class="record-place">
+                <span class="place-num">1</span><span class="place-suffix">st</span>
+              </div>
+              <div class="record-detail">
+                <div class="record-event">NFF Battlegrounds — Novice Classic Physique</div>
+              </div>
+            </div>
+            <div class="record-item gold">
+              <div class="record-place">
+                <span class="place-num">1</span><span class="place-suffix">st</span>
+              </div>
+              <div class="record-detail">
+                <div class="record-event">NFF Battlegrounds — Open Classic Physique</div>
+              </div>
+            </div>
+            <div class="record-item silver">
+              <div class="record-place">
+                <span class="place-num">2</span><span class="place-suffix">nd</span>
+              </div>
+              <div class="record-detail">
+                <div class="record-event">NFF Battlegrounds — Open Men's Physique</div>
+              </div>
+            </div>
+            <div class="record-item silver">
+              <div class="record-place">
+                <span class="place-num">2</span><span class="place-suffix">nd</span>
+              </div>
+              <div class="record-detail">
+                <div class="record-event">Alamo Showdown — Open Men's Physique</div>
+              </div>
+            </div>
+            <div class="record-item bronze">
+              <div class="record-place">
+                <span class="place-num">3</span><span class="place-suffix">rd</span>
+              </div>
+              <div class="record-detail">
+                <div class="record-event">Alamo Showdown — Novice Men's Physique</div>
+                <div class="record-note">↑ Improved from 4th place in 2023</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="record-year-group">
+          <div class="record-year">2023</div>
+          <div class="record-items">
+            <div class="record-item">
+              <div class="record-place">
+                <span class="place-num">4</span><span class="place-suffix">th</span>
+              </div>
+              <div class="record-detail">
+                <div class="record-event">Alamo Showdown — Novice Men's Physique</div>
+                <div class="record-note">First competitive appearance</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ENDURANCE -->
+    <div class="record-category">
+      <div class="record-cat-header">
+        <span class="record-cat-icon">🏃</span>
+        <div>
+          <div class="record-cat-title">Endurance Racing</div>
+          <div class="record-cat-sub">Half Marathon · 10K · Marathon</div>
+        </div>
+      </div>
+      <div class="record-entries">
+
+        <div class="record-year-group">
+          <div class="record-year">2025</div>
+          <div class="record-items">
+            <div class="record-item gold">
+              <div class="record-place">
+                <span class="place-num">1</span><span class="place-suffix">st</span>
+              </div>
+              <div class="record-detail">
+                <div class="record-event">American Hero Half Marathon — Age Group (M 30–39)</div>
+                <div class="record-note">4th overall · 2nd male · 1:44:48 · 8:00/mi pace</div>
+              </div>
+            </div>
+            <div class="record-item bronze">
+              <div class="record-place">
+                <span class="place-num">3</span><span class="place-suffix">rd</span>
+              </div>
+              <div class="record-detail">
+                <div class="record-event">Siesta Half Marathon — Age Group (M 30–34)</div>
+                <div class="record-note">14th overall · 1:43:40 · 7:55/mi pace</div>
+              </div>
+            </div>
+            <div class="record-item highlight">
+              <div class="record-place" style="flex-direction:column; align-items:center; min-width:56px;">
+                <span style="font-family:'Bebas Neue',sans-serif; font-size:0.65rem; letter-spacing:0.1em; color:var(--gold); line-height:1;">TOP</span>
+                <span class="place-num" style="font-size:1.6rem;">7%</span>
+              </div>
+              <div class="record-detail">
+                <div class="record-event">San Antonio Marathon 2025</div>
+                <div class="record-note">236th of 3,427 finishers · 3:33:19 finish time</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="record-year-group">
+          <div class="record-year">2026</div>
+          <div class="record-items">
+            <div class="record-item">
+              <div class="record-place">
+                <span class="place-num">4</span><span class="place-suffix">th</span>
+              </div>
+              <div class="record-detail">
+                <div class="record-event">Sam Houston Race Park 10K — Age Group (M 30–34)</div>
+                <div class="record-note">18th of 438 overall · 44:59 · 7:15/mi pace</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      <div style="margin-top:1.5rem; padding:1.25rem; background:rgba(201,168,76,0.05); border:1px solid var(--gold-dk);">
+        <p style="font-size:0.7rem; letter-spacing:0.18em; text-transform:uppercase; color:var(--gold); margin-bottom:0.5rem;">What this means for you</p>
+        <p style="font-size:0.8rem; color:var(--muted); line-height:1.7;">A coach who competes understands pressure, discipline, and peak performance from the inside. Whether your goal is fat loss, strength, or your first race — you're being coached by someone who lives every standard they set.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- SERVICES -->
+  <p class="section-eyebrow fade-up">What We Offer</p>
+  <h2 class="section-title fade-up">Coaching That Fits Your Life</h2>
+  <p class="section-body fade-up">
+    Every service is designed around your goals, schedule, and lifestyle —
+    not a template built for someone else.
+  </p>
+  <div class="services-grid fade-up">
+    <div class="service-card">
+      <div class="service-icon">🏋️</div>
+      <div class="service-name">1-on-1 Personal Training</div>
+      <p class="service-desc">In-person sessions with full programming, form coaching, and real-time feedback. Built around your biomechanics, not a generic plan.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">📱</div>
+      <div class="service-name">Online Coaching</div>
+      <p class="service-desc">Custom workouts, nutrition guidance, weekly check-ins, and direct messaging — everything you need to train smart from anywhere in the world.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🥗</div>
+      <div class="service-name">Nutrition Coaching</div>
+      <p class="service-desc">No crash diets. No fads. A sustainable approach to fueling your body based on real science and your individual lifestyle.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">📊</div>
+      <div class="service-name">Body Composition Analysis</div>
+      <p class="service-desc">Data-driven assessment of body fat, lean mass, and measurements so you can track what actually matters — not just the scale.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🔄</div>
+      <div class="service-name">Movement Assessment</div>
+      <p class="service-desc">Corrective exercise and movement screening to identify imbalances before they become injuries. Train smarter and safer.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🧠</div>
+      <div class="service-name">Habit & Lifestyle Coaching</div>
+      <p class="service-desc">Sleep, stress, recovery, and daily habits matter as much as your workouts. Build the full picture of a healthy life.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🦾</div>
+      <div class="service-name">Senior Fitness</div>
+      <p class="service-desc">Safe, effective training designed for adults 55+ focused on strength, mobility, balance, and quality of life. It's never too late to get stronger.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🔁</div>
+      <div class="service-name">Mobility & Recovery</div>
+      <p class="service-desc">Targeted mobility work, stretching, and recovery sessions to reduce pain, move better, and stay consistent long term.</p>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- TRANSFORMATIONS -->
+<section id="transformations" style="background: var(--black);">
+  <div class="transforms-intro fade-up">
+    <div>
+      <p class="section-eyebrow">Real People. Real Results.</p>
+      <h2 class="section-title" style="margin-bottom:0;">Client Transformations</h2>
+    </div>
+    <p style="color:var(--muted); font-size:0.85rem; max-width:320px; line-height:1.7;">
+      Every client started where you are. What changed was the right guidance, the right plan, and genuine accountability.
+    </p>
+  </div>
+  <div class="transforms-grid fade-up">
+    <div class="transform-card">
+      <img src="IMG_3704.jpeg" alt="Client transformation — 35 lbs fat loss, body recomposition"/>
+      <div class="transform-overlay">
+        <span class="transform-tag">35 lbs Lost · 17% BF Reduction</span>
+      </div>
+    </div>
+    <div class="transform-card">
+      <img src="IMG_7355.jpeg" alt="Client transformation — muscle gain and fat loss"/>
+      <div class="transform-overlay">
+        <span class="transform-tag">35+ lbs Fat Lost · 10 lbs Muscle Gained</span>
+      </div>
+    </div>
+    <div class="transform-card">
+      <img src="IMG_7357.jpeg" alt="Client transformation — female body recomposition"/>
+      <div class="transform-overlay">
+        <span class="transform-tag">Full Body Recomposition</span>
+      </div>
+    </div>
+    <div class="testimonial-card fade-up">
+      <div class="testimonial-quote">"Working with Jake has completely changed the way I approach fitness. I've lost fat, built muscle, and gained so much confidence — but more importantly, I've learned how to create sustainable habits that fit my lifestyle."</div>
+      <div class="testimonial-author">— Britney, Bodies By Jake Client</div>
+    </div>
+    <div class="transform-card">
+      <img src="IMG_7358.jpeg" alt="Client transformation — core definition"/>
+      <div class="transform-overlay">
+        <span class="transform-tag">Core Definition</span>
+      </div>
+    </div>
+    <div class="transform-card">
+      <img src="IMG_7362.jpeg" alt="Client transformation — lifestyle recomposition"/>
+      <div class="transform-overlay">
+        <span class="transform-tag">Lifestyle Recomposition</span>
+      </div>
+    </div>
+    <div class="transform-card">
+      <img src="transform-6.jpeg" alt="Client transformation — athletic transformation"/>
+      <div class="transform-overlay">
+        <span class="transform-tag">Athletic Transformation</span>
+      </div>
+    </div>
+    <div class="transform-card">
+      <img src="transform-7.jpeg" alt="Client transformation — 25.9% to 16.8% body fat"/>
+      <div class="transform-overlay">
+        <span class="transform-tag">25.9% → 16.8% Body Fat</span>
+      </div>
+    </div>
+    <div class="transform-card">
+      <img src="transform-8.jpeg" alt="Senior client transformation — muscle built, improved mobility and function"/>
+      <div class="transform-overlay">
+        <span class="transform-tag">Muscle Built · Improved Mobility & Function</span>
+      </div>
+    </div>
+    <div class="transform-card">
+      <img src="transform-9.jpeg" alt="Client transformation — 60 lbs fat lost, 10 lbs muscle gained"/>
+      <div class="transform-overlay">
+        <span class="transform-tag">60 lbs Fat Lost · 10 lbs Muscle Gained</span>
+      </div>
+    </div>
+    <div class="transform-card" style="background:var(--card); display:flex; align-items:center; justify-content:center; padding:3rem; min-height:300px;">
+      <div style="text-align:center;">
+        <p style="font-family:'Bebas Neue',sans-serif; font-size:2.5rem; color:var(--gold); letter-spacing:0.05em; line-height:1.1; margin-bottom:1rem;">Your Story<br>Goes Here</p>
+        <a href="#consult" class="btn-primary" style="font-size:0.72rem;">Start Your Story</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- PHILOSOPHY -->
+<section id="philosophy">
+  <p class="section-eyebrow fade-up">How We Think</p>
+  <h2 class="section-title fade-up">The Coaching Philosophy</h2>
+  <p class="section-body fade-up">
+    These aren't motivational phrases. They're the principles behind every decision, every program, and every conversation.
+  </p>
+  <div class="philosophy-list fade-up">
+    <div class="phil-item">
+      <div class="phil-num">01</div>
+      <div class="phil-title">Teach the Why</div>
+      <p class="phil-body">You don't just follow a plan. You understand it. Knowledge creates independence — you'll never need to guess again.</p>
+    </div>
+    <div class="phil-item">
+      <div class="phil-num">02</div>
+      <div class="phil-title">Consistency Wins</div>
+      <p class="phil-body">Motivation runs out. Discipline built through habit and education is what carries you past every plateau.</p>
+    </div>
+    <div class="phil-item">
+      <div class="phil-num">03</div>
+      <div class="phil-title">Science First</div>
+      <p class="phil-body">Every recommendation is evidence-based. No fads, no trends, no shortcuts that don't hold up to scrutiny.</p>
+    </div>
+    <div class="phil-item">
+      <div class="phil-num">04</div>
+      <div class="phil-title">Sustainable Always</div>
+      <p class="phil-body">The best program is one you can maintain for years. We build fitness that improves every area of your life.</p>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- FAQ -->
+<section id="faq" style="background:var(--black);">
+  <p class="section-eyebrow fade-up">Got Questions</p>
+  <h2 class="section-title fade-up">Frequently Asked</h2>
+  <p class="section-body fade-up">The things people always ask before reaching out — answered honestly.</p>
+  <div class="faq-list fade-up">
+
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">
+        Do I need to already be in shape to work with you?
+        <span class="faq-arrow">↓</span>
+      </button>
+      <div class="faq-a">
+        Not at all. Some of my best transformations started with clients who had never set foot in a gym. The assessment is designed to meet you exactly where you are — no judgment, no assumptions. The only requirement is that you're ready to be consistent.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">
+        What's the difference between in-person and online coaching?
+        <span class="faq-arrow">↓</span>
+      </button>
+      <div class="faq-a">
+        In-person training is hands-on — we train together, I correct your form in real time, and we use my equipment including the InBody scanner for regular check-ins. Online coaching gives you a fully custom program, nutrition guidance, weekly check-ins, and direct access to me via messaging. Both get you the same level of personal attention. The difference is location and format.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">
+        What does the free $100 assessment actually include?
+        <span class="faq-arrow">↓</span>
+      </button>
+      <div class="faq-a">
+        It's a full hour with me. We run an InBody body composition scan so you know your exact body fat percentage, lean muscle mass, and metabolic data — and you keep those results. We go through a movement and strength screen, review your nutrition habits, and map out your goals with a realistic timeline. You leave with real data and a clear direction. No sales pitch, no pressure.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">
+        How is this different from just using a fitness app?
+        <span class="faq-arrow">↓</span>
+      </button>
+      <div class="faq-a">
+        Apps give you programs built for someone else. I build yours around your body, your movement patterns, your schedule, and your life. I also teach you the why behind everything — so eventually you understand fitness well enough that you don't need to rely on anyone, including me. That's the goal.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">
+        How long before I start seeing results?
+        <span class="faq-arrow">↓</span>
+      </button>
+      <div class="faq-a">
+        Most clients notice changes in energy, sleep, and how they feel within the first 2–3 weeks. Visible physical changes typically show up between weeks 4–8 depending on consistency, starting point, and goal. I won't promise a timeline that isn't realistic — but I will tell you that the clients who follow the plan and check in consistently always get there.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">
+        Do you offer nutrition coaching separately from training?
+        <span class="faq-arrow">↓</span>
+      </button>
+      <div class="faq-a">
+        Yes. Nutrition coaching is available as a standalone service. As a Sports Nutrition Specialist, I build sustainable plans around your lifestyle — not restrictive diets that fall apart after two weeks. If you're already training somewhere else but need help with your nutrition, I can work with you on that alone.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">
+        Where are you located?
+        <span class="faq-arrow">↓</span>
+      </button>
+      <div class="faq-a">
+        I'm based in San Antonio, Texas. In-person training and assessments are available at <strong style="color:var(--white);">9100 Wurzbach Rd, San Antonio, TX 78240</strong>. Online coaching is available to clients anywhere in the world.
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- APP WAITLIST -->
+<section id="app" style="background:var(--dark); text-align:center; padding: 80px 5vw;">
+  <div class="fade-up" style="max-width:600px; margin:0 auto;">
+    <p class="section-eyebrow" style="justify-content:center;">Coming Soon</p>
+    <h2 style="font-family:'Bebas Neue',sans-serif; font-size:clamp(2.5rem,5vw,4rem); line-height:1; letter-spacing:0.03em; color:var(--white); margin-bottom:1rem;">
+      The Bodies By Jake App
+    </h2>
+    <p style="color:var(--muted); font-size:0.95rem; line-height:1.8; margin-bottom:0.75rem;">
+      A complete coaching platform built from the ground up — workouts, nutrition, progress tracking, habit check-ins, and direct access to your coach. All in one place.
+    </p>
+    <p style="color:var(--gold); font-size:0.82rem; letter-spacing:0.1em; margin-bottom:2.5rem;">
+      Early access members get founding pricing and priority onboarding.
+    </p>
+    <div style="display:flex; gap:0; max-width:460px; margin:0 auto;">
+      <input
+        type="email"
+        id="waitlistEmail"
+        placeholder="Enter your email"
+        style="flex:1; background:var(--card); border:1px solid var(--border); border-right:none; color:var(--white); padding:15px 18px; font-family:'Inter',sans-serif; font-size:0.9rem; outline:none;"
+      />
+      <button onclick="joinWaitlist()" style="background:var(--gold); color:var(--black); border:none; padding:15px 24px; font-family:'Inter',sans-serif; font-size:0.75rem; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; cursor:pointer; white-space:nowrap; transition:background 0.2s;" onmouseover="this.style.background='#E2C47A'" onmouseout="this.style.background='#C9A84C'">
+        Join Waitlist
+      </button>
+    </div>
+    <div id="waitlistSuccess" style="display:none; margin-top:1.5rem; color:var(--gold); font-size:0.85rem; letter-spacing:0.08em;">
+      ✓ You're on the list. We'll be in touch when early access opens.
+    </div>
+    <p style="margin-top:1rem; font-size:0.7rem; color:#555; letter-spacing:0.05em;">No spam. Unsubscribe anytime.</p>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- CONSULTATION FORM -->
+<section id="consult">
+  <p class="section-eyebrow fade-up">Limited Availability</p>
+  <h2 class="section-title fade-up">Claim Your Free<br><span style="color:var(--gold);">$100 Assessment</span></h2>
+
+  <!-- Value box -->
+  <div class="fade-up" style="margin: 2rem 0 3.5rem; background: var(--card); border: 1px solid var(--gold-dk); padding: 2rem 2.5rem; max-width: 720px;">
+    <p style="font-size:0.7rem; letter-spacing:0.22em; text-transform:uppercase; color:var(--gold); margin-bottom:1.25rem;">What's Included — $100 Value, Yours Free</p>
+    <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap:1.25rem;">
+      <div style="display:flex; gap:12px; align-items:flex-start;">
+        <span style="color:var(--gold); font-size:1.1rem; margin-top:2px;">◈</span>
+        <div>
+          <p style="font-size:0.85rem; font-weight:500; color:var(--white); margin-bottom:3px;">InBody Body Composition Scan</p>
+          <p style="font-size:0.76rem; color:var(--muted); line-height:1.6;">Precise body fat %, lean muscle mass, and metabolic data — printed results are yours to keep.</p>
+        </div>
+      </div>
+      <div style="display:flex; gap:12px; align-items:flex-start;">
+        <span style="color:var(--gold); font-size:1.1rem; margin-top:2px;">◈</span>
+        <div>
+          <p style="font-size:0.85rem; font-weight:500; color:var(--white); margin-bottom:3px;">Movement & Strength Assessment</p>
+          <p style="font-size:0.76rem; color:var(--muted); line-height:1.6;">Identify imbalances, mobility limitations, and strength baselines before you train.</p>
+        </div>
+      </div>
+      <div style="display:flex; gap:12px; align-items:flex-start;">
+        <span style="color:var(--gold); font-size:1.1rem; margin-top:2px;">◈</span>
+        <div>
+          <p style="font-size:0.85rem; font-weight:500; color:var(--white); margin-bottom:3px;">Nutrition Review</p>
+          <p style="font-size:0.76rem; color:var(--muted); line-height:1.6;">Understand how your current eating habits are helping or hurting your goals.</p>
+        </div>
+      </div>
+      <div style="display:flex; gap:12px; align-items:flex-start;">
+        <span style="color:var(--gold); font-size:1.1rem; margin-top:2px;">◈</span>
+        <div>
+          <p style="font-size:0.85rem; font-weight:500; color:var(--white); margin-bottom:3px;">Goal Mapping Session</p>
+          <p style="font-size:0.76rem; color:var(--muted); line-height:1.6;">A full hour with Jacob — your goals, your timeline, your realistic path forward.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="consult-wrap">
+    <div class="fade-up">
+      <p class="consult-side-body">
+        This isn't a sales call. It's a real coaching session.
+        You walk in, we run your InBody scan, assess how you move, review your nutrition,
+        and map out exactly what it would take to hit your goals.
+        You leave with data, clarity, and a plan — whether you continue with me or not.
+      </p>
+      <div class="what-to-expect">
+        <p style="font-size:0.7rem; letter-spacing:0.2em; text-transform:uppercase; color:var(--gold); margin-bottom:1.5rem;">How It Works</p>
+        <div class="expect-item">
+          <span class="expect-icon">01</span>
+          <p class="expect-text"><strong>Fill out the form.</strong> Tell me your goals and where you're starting from. Takes 2 minutes.</p>
+        </div>
+        <div class="expect-item">
+          <span class="expect-icon">02</span>
+          <p class="expect-text"><strong>I'll reach out within 24 hours</strong> to schedule your session at a time that works for you.</p>
+        </div>
+        <div class="expect-item">
+          <span class="expect-icon">03</span>
+          <p class="expect-text"><strong>Show up and get your data.</strong> InBody scan, full assessment, and a real conversation about your future.</p>
+        </div>
+        <div class="expect-item">
+          <span class="expect-icon">04</span>
+          <p class="expect-text"><strong>Leave with a plan.</strong> Your scan results, your baseline metrics, and a clear direction forward.</p>
+        </div>
+      </div>
+    </div>
+    <div class="fade-up">
+      <form id="consultForm" onsubmit="handleSubmit(event)" action="https://formspree.io/f/mvzjknnl" method="POST">
+        <div class="form-row">
+          <div class="form-field">
+            <label>First Name</label>
+            <input type="text" name="first_name" placeholder="Jacob" required/>
+          </div>
+          <div class="form-field">
+            <label>Last Name</label>
+            <input type="text" name="last_name" placeholder="Murillo" required/>
+          </div>
+        </div>
+        <div class="form-field">
+          <label>Email</label>
+          <input type="email" name="email" placeholder="you@email.com" required/>
+        </div>
+        <div class="form-field">
+          <label>Phone</label>
+          <input type="tel" name="phone" placeholder="(210) 000-0000" required/>
+        </div>
+        <div class="form-field">
+          <label>Primary Goal</label>
+          <select name="goal" required>
+            <option value="" disabled selected>Select your goal</option>
+            <option>Fat Loss</option>
+            <option>Muscle Building</option>
+            <option>Body Recomposition</option>
+            <option>Improve Strength & Performance</option>
+            <option>Athletic / Hybrid Training</option>
+            <option>General Health & Fitness</option>
+            <option>Contest Prep</option>
+          </select>
+        </div>
+        <div class="form-field">
+          <label>Where are you starting from?</label>
+          <textarea name="background" placeholder="Tell me a little about your current fitness level, what you've tried, and what's been holding you back."></textarea>
+        </div>
+        <button type="submit" class="form-submit">Claim My Free $100 Assessment →</button>
+        <p class="consult-promise">In-person · San Antonio, TX · Response within 24 hours · No obligation</p>
+      </form>
+      <div id="formSuccess" style="display:none; padding:2.5rem; background:var(--card); border:1px solid var(--gold); text-align:center;">
+        <p style="font-family:'Bebas Neue',sans-serif; font-size:2rem; color:var(--gold); letter-spacing:0.06em; margin-bottom:0.75rem;">You're Claimed.</p>
+        <p style="color:var(--muted); font-size:0.88rem; line-height:1.8;">Your free $100 assessment is reserved. I'll reach out within 24 hours to lock in your session. Check your inbox — and get ready.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SOCIAL STRIP -->
+<div class="social-strip fade-up">
+  <p class="social-strip-eyebrow">Follow the Journey</p>
+  <p class="social-strip-title">Stay Connected</p>
+  <div class="social-buttons">
+    <a href="https://www.instagram.com/JakeTheeGreat" target="_blank" rel="noopener" class="social-btn instagram">
+      <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+      Instagram · @JakeTheeGreat
+    </a>
+    <a href="https://www.tiktok.com/@JakeeTheeGreat" target="_blank" rel="noopener" class="social-btn tiktok">
+      <svg viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.17 8.17 0 004.78 1.52V6.75a4.85 4.85 0 01-1.01-.06z"/></svg>
+      TikTok · @JakeeTheeGreat
+    </a>
+    <a href="https://www.facebook.com/jacob.murillo.9" target="_blank" rel="noopener" class="social-btn facebook">
+      <svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+      Facebook · Jacob Murillo
+    </a>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div>
+    <div class="footer-brand">Bodies By Jake Personal Training</div>
+    <div class="footer-tagline">San Antonio, Texas · Online Worldwide</div>
+  </div>
+  <ul class="footer-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#transformations">Results</a></li>
+    <li><a href="#consult">Free $100 Assessment</a></li>
+  </ul>
+  <div style="display:flex; flex-direction:column; align-items:flex-end; gap:1rem;">
+    <div class="footer-socials">
+      <a href="https://www.instagram.com/JakeTheeGreat" target="_blank" rel="noopener" class="footer-social-icon" aria-label="Instagram">
+        <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+      </a>
+      <a href="https://www.tiktok.com/@JakeeTheeGreat" target="_blank" rel="noopener" class="footer-social-icon" aria-label="TikTok">
+        <svg viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.17 8.17 0 004.78 1.52V6.75a4.85 4.85 0 01-1.01-.06z"/></svg>
+      </a>
+      <a href="https://www.facebook.com/JakeTheeGreat" target="_blank" rel="noopener" class="footer-social-icon" aria-label="Facebook">
+        <svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+      </a>
+    </div>
+    <div class="footer-copy">© 2025 Bodies By Jake Personal Training LLC</div>
+  </div>
+</footer>
+
+<script>
+  // Scroll animations
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+  // FAQ accordion
+  function toggleFaq(btn) {
+    const answer = btn.nextElementSibling;
+    const isOpen = answer.classList.contains('open');
+    document.querySelectorAll('.faq-a.open').forEach(a => a.classList.remove('open'));
+    document.querySelectorAll('.faq-q.open').forEach(q => q.classList.remove('open'));
+    if (!isOpen) { answer.classList.add('open'); btn.classList.add('open'); }
+  }
+
+  // App waitlist
+  function joinWaitlist() {
+    const email = document.getElementById('waitlistEmail').value;
+    if (!email || !email.includes('@')) {
+      document.getElementById('waitlistEmail').style.borderColor = '#c0392b';
+      return;
+    }
+    document.getElementById('waitlistEmail').style.display = 'none';
+    document.querySelector('#app button').style.display = 'none';
+    document.getElementById('waitlistSuccess').style.display = 'block';
+  }
+
+
+  async function handleSubmit(e) {
+    e.preventDefault();
+    const form = document.getElementById('consultForm');
+    const data = new FormData(form);
+    try {
+      const response = await fetch(form.action, {
+        method: 'POST',
+        body: data,
+        headers: { 'Accept': 'application/json' }
+      });
+      if (response.ok) {
+        form.style.display = 'none';
+        document.getElementById('formSuccess').style.display = 'block';
+      } else {
+        alert('Something went wrong. Please try again or contact directly.');
+      }
+    } catch (error) {
+      alert('Something went wrong. Please try again.');
+    }
+  }
+</script>
+</body>
+</html>
