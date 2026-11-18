@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: [bodiesbyjake.vercel.app/sitemap.xml](https://bodiesbyjake.vercel.app/sitemap.xml)
