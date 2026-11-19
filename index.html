@@ -828,7 +828,11 @@
     .consult-wrap { grid-template-columns: 1fr; }
     .about-image-stack { order: -1; }
     .about-img-secondary { width: 50%; }
-    .nav-links { display: none; }
+    nav { flex-wrap: wrap; padding: 14px 5vw; }
+    .nav-links { order: 3; width: 100%; overflow-x: auto; gap: 1.25rem; padding: 10px 0 4px; scrollbar-width: none; }
+    .nav-links::-webkit-scrollbar { display: none; }
+    .nav-links a { white-space: nowrap; }
+    .hero { padding-top: 160px; }
     .hero-stats { gap: 2rem; }
   }
   @media (max-width: 600px) {
