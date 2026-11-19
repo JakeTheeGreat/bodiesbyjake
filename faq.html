@@ -29,17 +29,27 @@
 <style>
 :root{--black:#0a0a0a;--dark:#111111;--card:#161616;--border:#242424;--gold:#C9A84C;--gold-lt:#E2C47A;--gold-dk:#8B6914;--white:#F5F2EC;--muted:#888888}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
+html{scroll-behavior:smooth;scroll-padding-top:var(--top-h,124px)}
 body{background:var(--black);color:var(--white);font-family:'Inter',sans-serif;font-weight:300;line-height:1.6;-webkit-font-smoothing:antialiased}
 a{color:var(--gold-lt)}
-nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;gap:1.5rem;padding:20px 5vw;background:rgba(10,10,10,.85);backdrop-filter:blur(12px);border-bottom:1px solid rgba(201,168,76,.12)}
+.site-top{position:fixed;top:0;left:0;right:0;z-index:100}
+nav{position:relative;display:flex;align-items:center;justify-content:space-between;gap:1.5rem;padding:20px 5vw;background:rgba(10,10,10,.85);backdrop-filter:blur(12px);border-bottom:1px solid rgba(201,168,76,.12)}
 .nav-logo{font-family:'Bebas Neue',sans-serif;font-size:1.35rem;letter-spacing:.12em;color:var(--gold);text-decoration:none;white-space:nowrap}
 .nav-links{display:flex;gap:2rem;list-style:none}
 .nav-links a{color:var(--muted);text-decoration:none;font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;transition:color .2s;white-space:nowrap}
 .nav-links a:hover,.nav-links a[aria-current]{color:var(--gold-lt)}
-.nav-cta{background:var(--gold);color:var(--black);padding:10px 24px;font-size:.75rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;text-decoration:none;white-space:nowrap;transition:background .2s}
+.nav-end{display:flex;align-items:center;gap:1.5rem}
+.nav-cta{background:var(--gold);color:var(--black);padding:10px 24px;font-size:.75rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;text-decoration:none;white-space:nowrap;transition:background .2s;display:inline-flex;align-items:center}
 .nav-cta:hover{background:var(--gold-lt)}
-.hero{padding:170px 5vw 80px;position:relative;overflow:hidden}
+.nav-socials{display:flex;gap:1rem;align-items:center}
+.nav-social-icon{color:var(--muted);text-decoration:none;transition:color .2s;display:flex;align-items:center}
+.nav-social-icon:hover{color:var(--gold)}
+.nav-social-icon svg{width:17px;height:17px;fill:currentColor}
+.urgency-banner{background:var(--gold);color:var(--black);text-align:center;padding:12px 5vw;font-size:.78rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;position:relative;z-index:99}
+.urgency-banner a{color:var(--black);text-decoration:underline;font-weight:700;white-space:nowrap;display:inline-block;margin-left:1rem}
+.urgency-dot{display:inline-block;width:8px;height:8px;background:var(--black);border-radius:50%;margin-right:8px;animation:pulse 1.8s ease-in-out infinite;vertical-align:middle}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.75)}}
+.hero{padding:calc(var(--top-h,124px) + 24px) 5vw 80px;position:relative;overflow:hidden}
 .hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 50% at 80% 50%,rgba(201,168,76,.07) 0%,transparent 70%),radial-gradient(ellipse 40% 60% at 20% 80%,rgba(201,168,76,.04) 0%,transparent 60%);pointer-events:none}
 .hero-eyebrow,.section-eyebrow{font-size:.72rem;letter-spacing:.25em;text-transform:uppercase;color:var(--gold);margin-bottom:1.25rem}
 .hero h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(3rem,8vw,6.5rem);line-height:.95;letter-spacing:.02em;color:var(--white)}
@@ -102,7 +112,11 @@ section.alt{background:var(--dark)}
 footer{background:var(--dark);border-top:1px solid var(--border);padding:3rem 5vw;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1.5rem}
 .footer-brand{font-family:'Bebas Neue',sans-serif;font-size:1.1rem;letter-spacing:.12em;color:var(--gold)}
 .footer-tagline,.footer-copy{font-size:.72rem;color:var(--muted);letter-spacing:.08em;margin-top:4px}
-.footer-copy{color:#555}
+.footer-copy{color:var(--muted)}
+.footer-socials{display:flex;gap:1.2rem;align-items:center}
+.footer-social-icon{color:var(--muted);text-decoration:none;transition:color .2s;display:flex;align-items:center}
+.footer-social-icon:hover{color:var(--gold)}
+.footer-social-icon svg{width:18px;height:18px;fill:currentColor}
 .footer-links{display:flex;gap:1.5rem 2rem;list-style:none;flex-wrap:wrap}
 .footer-links a{font-size:.75rem;color:var(--muted);text-decoration:none;letter-spacing:.08em}
 .footer-links a:hover{color:var(--gold)}
@@ -144,12 +158,20 @@ ul.breakdown li.total{color:var(--white);font-weight:600;border-bottom:none;bord
 .transform-card img{width:100%;height:auto;display:block;filter:grayscale(15%)}
 .transform-overlay{position:absolute;bottom:0;left:0;right:0;padding:1.25rem;background:linear-gradient(transparent,rgba(0,0,0,.75));pointer-events:none}
 .transform-tag{display:inline-block;background:var(--gold);color:var(--black);font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;font-weight:600;padding:4px 10px}
-@media (max-width:900px){nav{flex-wrap:wrap;padding:14px 5vw}.nav-links{order:3;width:100%;overflow-x:auto;gap:1.25rem;padding-bottom:4px;scrollbar-width:none}.nav-links::-webkit-scrollbar{display:none}.consult-wrap{grid-template-columns:1fr}.hero{padding-top:190px}}
-@media (max-width:600px){.form-row{grid-template-columns:1fr}.nav-cta{padding:9px 14px;font-size:.66rem}}
+@media (max-width:1200px){nav{flex-wrap:wrap;padding:14px 5vw}.nav-links{order:3;width:100%;overflow-x:auto;gap:1.25rem;padding:10px 0 4px;scrollbar-width:none}.nav-links::-webkit-scrollbar{display:none}.nav-links a{white-space:nowrap}.hero{padding-top:calc(var(--top-h,150px) + 20px)}}
+@media (max-width:900px){.consult-wrap{grid-template-columns:1fr}}
+@media (max-width:600px){.form-row{grid-template-columns:1fr}.nav-cta{min-height:40px;display:inline-flex;align-items:center;padding:8px 12px;font-size:.64rem;letter-spacing:.08em;white-space:nowrap}.nav-socials{display:none}.nav-logo{font-size:1.15rem}nav{padding:10px 5vw 6px}.nav-links{padding-top:8px}.urgency-banner{padding:8px 5vw;font-size:.66rem;letter-spacing:.08em}}
+@media (max-width:345px){.nav-logo{font-size:1rem;letter-spacing:.08em}.nav-cta{padding:8px 10px;font-size:.6rem;letter-spacing:.05em}}
 </style>
 </head>
 <body>
 
+<header class="site-top">
+<div class="urgency-banner">
+  <span class="urgency-dot"></span>
+  Only 3 in-person spots remaining this month — 2 already claimed
+  <a href="#consult">Reserve yours →</a>
+</div>
 <nav>
   <a href="index.html" class="nav-logo">Bodies By Jake</a>
   <ul class="nav-links">
@@ -159,8 +181,17 @@ ul.breakdown li.total{color:var(--white);font-weight:600;border-bottom:none;bord
     <li><a href="faq.html" aria-current="page">FAQ</a></li>
     <li><a href="become-a-personal-trainer.html">Become a Trainer</a></li>
   </ul>
-  <a href="#consult" class="nav-cta">Claim Free Fitness Assessment</a>
+  <div class="nav-end">
+    <div class="nav-socials">
+      <a href="https://www.instagram.com/JakeTheeGreat" target="_blank" rel="noopener" class="nav-social-icon" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></a>
+      <a href="https://www.tiktok.com/@JakeeTheeGreat" target="_blank" rel="noopener" class="nav-social-icon" aria-label="TikTok"><svg viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.17 8.17 0 004.78 1.52V6.75a4.85 4.85 0 01-1.01-.06z"/></svg></a>
+      <a href="https://www.facebook.com/jacob.murillo.9" target="_blank" rel="noopener" class="nav-social-icon" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
+    </div>
+    <a href="#consult" class="nav-cta">Free Fitness Assessment</a>
+  </div>
 </nav>
+</header>
+<script>(function(){var h=document.querySelector('.site-top');if(!h)return;function s(){document.documentElement.style.setProperty('--top-h',h.offsetHeight+'px');}s();addEventListener('resize',s);addEventListener('load',s);if(document.fonts&&document.fonts.ready)document.fonts.ready.then(s);})();</script>
 
 <header class="hero">
   <p class="hero-eyebrow">Got Questions · San Antonio, TX · Online Worldwide</p>
@@ -357,11 +388,11 @@ ul.breakdown li.total{color:var(--white);font-weight:600;border-bottom:none;bord
     <li><a href="#consult">Free Fitness Assessment</a></li>
   </ul>
   <div>
-    <ul class="footer-links">
-      <li><a href="https://www.instagram.com/JakeTheeGreat" target="_blank" rel="noopener">Instagram</a></li>
-      <li><a href="https://www.tiktok.com/@JakeeTheeGreat" target="_blank" rel="noopener">TikTok</a></li>
-      <li><a href="https://www.facebook.com/jacob.murillo.9" target="_blank" rel="noopener">Facebook</a></li>
-    </ul>
+    <div class="footer-socials">
+      <a href="https://www.instagram.com/JakeTheeGreat" target="_blank" rel="noopener" class="footer-social-icon" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></a>
+      <a href="https://www.tiktok.com/@JakeeTheeGreat" target="_blank" rel="noopener" class="footer-social-icon" aria-label="TikTok"><svg viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.17 8.17 0 004.78 1.52V6.75a4.85 4.85 0 01-1.01-.06z"/></svg></a>
+      <a href="https://www.facebook.com/jacob.murillo.9" target="_blank" rel="noopener" class="footer-social-icon" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
+    </div>
     <div class="footer-copy">© 2026 Bodies By Jake Personal Training LLC</div>
   </div>
 </footer>
