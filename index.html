@@ -868,6 +868,19 @@
     .nav-cta { padding: 8px 10px; font-size: 0.6rem; letter-spacing: 0.05em; }
   }
   img[width][height] { height: auto; }
+
+.blog-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1.5rem;margin-top:2.5rem;max-width:1100px}
+.blog-card{background:var(--card);border:1px solid var(--border);padding:2rem 1.75rem;display:flex;flex-direction:column;gap:.9rem;transition:border-color .2s;height:100%}
+.blog-card:hover{border-color:var(--gold-dk)}
+.blog-card-date{font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold)}
+.blog-card h3{font-family:'Bebas Neue',sans-serif;font-size:1.55rem;line-height:1.12;letter-spacing:.03em}
+.blog-card h3 a{color:var(--white);text-decoration:none}
+.blog-card h3 a:hover{color:var(--gold-lt)}
+.blog-card p{color:var(--muted);font-size:.9rem;line-height:1.7;flex-grow:1}
+.blog-card-link{font-size:.75rem;letter-spacing:.14em;text-transform:uppercase;font-weight:600;text-decoration:none;color:var(--gold)}
+.blog-card-link:hover{color:var(--gold-lt)}
+.blog-section-foot{margin-top:2rem}
+
 </style>
 </head>
 <body>
@@ -888,6 +901,7 @@
     <li><a href="online-personal-training.html">Online Coaching</a></li>
     <li><a href="pricing.html">Pricing</a></li>
     <li><a href="faq.html">FAQ</a></li>
+    <li><a href="blog/index.html">Blog</a></li>
     <li><a href="become-a-personal-trainer.html">Become a Trainer</a></li>
   </ul>
   <div class="nav-end">
@@ -1363,6 +1377,25 @@
 
 <div class="divider"></div>
 
+
+<!-- LATEST FROM THE BLOG -->
+<section id="blog">
+  <p class="section-eyebrow fade-up">From the Kitchen &amp; the Gym</p>
+  <h2 class="section-title fade-up">Latest from the Blog</h2>
+  <p class="section-body fade-up">Practical notes on training, nutrition, and the habits that actually stick.</p>
+  <div class="blog-grid fade-up">
+    <article class="blog-card">
+      <p class="blog-card-date">November 24, 2026</p>
+      <h3><a href="blog/six-pack-isnt-unattainable.html">A Six Pack Isn't Unattainable. It Just Takes a Little Forethought.</a></h3>
+      <p>It's 5 AM, I'm in my kitchen making food, and I'm thinking about something people say all the time. Here's the thing: you're looking at the result, not the ordinary habits that built it.</p>
+      <a class="blog-card-link" href="blog/six-pack-isnt-unattainable.html">Read more →</a>
+    </article>
+  </div>
+  <p class="blog-section-foot fade-up"><a class="blog-card-link" href="blog/index.html">See all posts →</a></p>
+</section>
+
+<div class="divider"></div>
+
 <!-- CONSULTATION FORM -->
 <section id="consult">
   <p class="section-eyebrow fade-up">Limited Availability</p>
@@ -1511,6 +1544,7 @@
     <li><a href="app.html">The App</a></li>
     <li><a href="pricing.html">Pricing</a></li>
     <li><a href="faq.html">FAQ</a></li>
+    <li><a href="blog/index.html">Blog</a></li>
     <li><a href="hyrox-training-san-antonio.html">Hyrox</a></li>
     <li><a href="become-a-personal-trainer.html">Become a Trainer</a></li>
     <li><a href="#consult">Free Fitness Assessment</a></li>
